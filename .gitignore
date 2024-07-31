@@ -25,3 +25,9 @@ replay_pid*
 
 serviceAccountKey.json
 **/serviceAccountKey.json
+
+.idea
+**/.idea
+
+apis.iml
+**/apis.iml
