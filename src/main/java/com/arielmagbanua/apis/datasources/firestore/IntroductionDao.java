@@ -39,9 +39,10 @@ public class IntroductionDao implements Dao<Introduction> {
      */
     @Override
     public Optional<Introduction> get(String id) throws ExecutionException, InterruptedException {
-        ApiFuture<DocumentSnapshot> doc = database.getCollection("profile")
-                .document(id.isBlank() || id.isEmpty() ? "introduction" : id)
-                .get();
+        ApiFuture<DocumentSnapshot> doc = database.getFutureDoc(
+                "profile",
+                id.isBlank() || id.isEmpty() ? "introduction" : id
+        );
 
         // this is blocked so probably handle this using callback
         DocumentSnapshot snapshot = doc.get();
