@@ -4,8 +4,10 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.checkerframework.checker.signature.qual.Identifier;
 
+/**
+ * The data class for introduction.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

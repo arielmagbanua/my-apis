@@ -12,13 +12,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/resume")
 public class ResumeController {
+    /**
+     * The service for dealing with introduction related data.
+     */
     private final IntroductionService introductionService;
 
+    /**
+     * Creates a new instance of this controller.
+     *
+     * @param introductionService The injected instance of introduction service.
+     */
     @Autowired
     public ResumeController(IntroductionService introductionService) {
         this.introductionService = introductionService;
     }
 
+    /**
+     * The GET API endpoint for introduction.
+     *
+     * @return the introduction response entity if there's any.
+     */
     @GetMapping("/introduction")
     public ResponseEntity<Introduction> getIntroduction() {
         Introduction introduction = introductionService.getIntroduction();
