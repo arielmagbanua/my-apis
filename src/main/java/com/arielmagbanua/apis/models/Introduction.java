@@ -12,10 +12,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Introduction {
+    /**
+     * The id of the introduction document.
+     */
     private String id;
+
+    /**
+     * The about data.
+     */
     private String about;
+
+    /**
+     * The headline data.
+     */
     private String headline;
 
+    /**
+     * Creates model instance by Firestore document snapshot.
+     *
+     * @param documentSnapshot a Firestore document snapshot object.
+     */
     public Introduction(DocumentSnapshot documentSnapshot) {
         id = documentSnapshot.getId();
         about = documentSnapshot.getString("about");

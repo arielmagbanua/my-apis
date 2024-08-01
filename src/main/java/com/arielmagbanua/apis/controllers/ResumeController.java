@@ -1,7 +1,9 @@
 package com.arielmagbanua.apis.controllers;
 
 import com.arielmagbanua.apis.models.Introduction;
+import com.arielmagbanua.apis.models.Links;
 import com.arielmagbanua.apis.services.contracts.IntroductionService;
+import com.arielmagbanua.apis.services.contracts.LinksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +20,19 @@ public class ResumeController {
     private final IntroductionService introductionService;
 
     /**
+     * The service for dealing with links related data.
+     */
+    private final LinksService linksService;
+
+    /**
      * Creates a new instance of this controller.
      *
      * @param introductionService The injected instance of introduction service.
      */
     @Autowired
-    public ResumeController(IntroductionService introductionService) {
+    public ResumeController(IntroductionService introductionService, LinksService linksService) {
         this.introductionService = introductionService;
+        this.linksService = linksService;
     }
 
     /**
@@ -38,6 +46,22 @@ public class ResumeController {
 
         if (introduction != null) {
             return new ResponseEntity<>(introduction, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * The GET API endpoint for links.
+     *
+     * @return the introduction response entity if there's any.
+     */
+    @GetMapping("/links")
+    public ResponseEntity<Links> getLinks() {
+        Links links = linksService.getLinks();
+
+        if (links != null) {
+            return new ResponseEntity<>(links, HttpStatus.OK);
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

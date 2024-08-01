@@ -1,8 +1,10 @@
 package com.arielmagbanua.apis.datasources.firestore;
 
 import com.arielmagbanua.apis.datasources.firestore.contracts.FirestoreDatabase;
+import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -54,5 +56,19 @@ public class Database implements FirestoreDatabase {
      */
     public CollectionReference getCollection(String name) {
         return getDb().collection(name);
+    }
+
+    /**
+     * Retrieves get future document snapshot object.
+     *
+     * @param collectionName the name of the collection.
+     * @param docId the doc id.
+     * @return an future document snapshot.
+     */
+    @Override
+    public ApiFuture<DocumentSnapshot> getFutureDoc(String collectionName, String docId) {
+        return getCollection(collectionName)
+                .document(docId)
+                .get();
     }
 }
