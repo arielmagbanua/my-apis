@@ -1,6 +1,8 @@
 package com.arielmagbanua.apis.datasources.firestore.contracts;
 
+import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 
 /**
@@ -28,4 +30,13 @@ public interface FirestoreDatabase {
      * @return a collection reference object.
      */
     CollectionReference getCollection(String name);
+
+    /**
+     * Retrieves get future document snapshot object.
+     *
+     * @param collectionName the name of the collection.
+     * @param docId the doc id.
+     * @return an future document snapshot.
+     */
+    ApiFuture<DocumentSnapshot> getFutureDoc(String collectionName, String docId);
 }
